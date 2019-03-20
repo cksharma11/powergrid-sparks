@@ -1,7 +1,7 @@
 const Turn = require("./turn");
-const ResourceMarket = require("./resource_market");
+const ResourceMarket = require("./resourceMarket");
 const ActivityLog = require("./activityLog");
-const PlayingOrder = require("./playing_order");
+const PlayingOrder = require("./playingOrder");
 const { Auction } = require("./auction");
 const Phase = require("./phase");
 

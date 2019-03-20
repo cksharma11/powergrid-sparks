@@ -3,7 +3,7 @@ const sinon = require("sinon");
 const Game = require("../../src/model/Game");
 const Player = require("../../src/model/player");
 const PowerPlantMarket = require("../../src/model/powerplantMarket");
-const playingOrder = require("../../src/model/playing_order");
+const playingOrder = require("../../src/model/playingOrder");
 
 describe("Game", () => {
   let game;
