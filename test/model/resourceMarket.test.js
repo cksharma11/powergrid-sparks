@@ -1,5 +1,5 @@
 const chai = require("chai");
-const ResourceMarket = require("../../src/model/resource_market");
+const ResourceMarket = require("../../src/model/resourceMarket");
 
 describe("ResourceMarket", () => {
   let resource_market = {};

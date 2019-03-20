@@ -1,6 +1,6 @@
 const chai = require("chai");
 const Player = require("../../src/model/player");
-const PlayingOrder = require("../../src/model/playing_order");
+const PlayingOrder = require("../../src/model/playingOrder");
 
 describe("getOrder", () => {
   const player1 = new Player("red", "A");

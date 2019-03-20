@@ -1,6 +1,6 @@
 const chai = require("chai");
 const sinon = require("sinon");
-const Game = require("../../src/model/Game");
+const Game = require("../../src/model/game");
 const Player = require("../../src/model/player");
 const PowerPlantMarket = require("../../src/model/powerplantMarket");
 const playingOrder = require("../../src/model/playingOrder");

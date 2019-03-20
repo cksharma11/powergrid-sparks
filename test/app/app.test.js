@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../../app");
-const Game = require("../../src/model/Game");
+const Game = require("../../src/model/game");
 const Player = require("../../src/model/player");
 const PowerPlantMarket = require("../../src/model/powerplantMarket");
 const Turn = require("../../src/model/turn");
