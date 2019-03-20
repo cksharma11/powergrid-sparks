@@ -1,4 +1,4 @@
-const PowerPlantMarket = require("../../src/model/power_plant_cards");
+const PowerPlantMarket = require("../../src/model/powerplantMarket");
 const chai = require("chai");
 const sinon = require("sinon");
 

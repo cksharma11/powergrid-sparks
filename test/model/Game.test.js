@@ -2,7 +2,7 @@ const chai = require("chai");
 const sinon = require("sinon");
 const Game = require("../../src/model/Game");
 const Player = require("../../src/model/player");
-const PowerPlantMarket = require("../../src/model/power_plant_cards");
+const PowerPlantMarket = require("../../src/model/powerplantMarket");
 const playingOrder = require("../../src/model/playing_order");
 
 describe("Game", () => {
