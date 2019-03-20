@@ -63,7 +63,7 @@ class Auction {
       this.isBidOver = true;
       this.action = `${
         this.currentPlayer.name
-      } has passed on buying powerPlant`;
+      } has passed on buying powerplant`;
       this.currentPlayer = this.players[0];
       return this.isAuctionOver();
     }

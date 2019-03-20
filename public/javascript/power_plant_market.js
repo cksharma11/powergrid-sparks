@@ -37,7 +37,7 @@ const updatePriceDiv = function(price) {
 
 const selectPowerPlant = function(element) {
   const powerPlantCost = element.id.split("_")[1];
-  fetch("/powerPlant/select", {
+  fetch("/powerplant/select", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `powerPlantCost=${powerPlantCost}`
@@ -83,8 +83,8 @@ const arrangeMarket = function(market, powerPlantCost, powerPlantDetails) {
 const generateMarket = function(powerPlants, startingIndex, endingIndex, id) {
   const marketDiv = generateDiv("single-market", id);
   const market = Object.keys(powerPlants).slice(startingIndex, endingIndex);
-  market.forEach(powerPlant =>
-    arrangeMarket(marketDiv, powerPlant, powerPlants[powerPlant])
+  market.forEach(powerplant =>
+    arrangeMarket(marketDiv, powerplant, powerPlants[powerplant])
   );
   return marketDiv;
 };

@@ -187,8 +187,8 @@ class Game {
     this.players = playingOrder.getOrder();
   }
 
-  addSelectedPowerPlant(powerPlant) {
-    this.powerPlantMarket.addSelectedPowerPlant(powerPlant);
+  addSelectedPowerPlant(powerplant) {
+    this.powerPlantMarket.addSelectedPowerPlant(powerplant);
   }
 
   rearrangePowerPlants() {

@@ -676,7 +676,7 @@ describe("POST updating powerplant and refilling resources", function() {
   });
 });
 
-describe("POST /powerPlant/select", function() {
+describe("POST /powerplant/select", function() {
   it("should respond with 200", function(done) {
     app.activeGames["53"] = new Game(1);
     app.cookies["1234567"] = "Ankon";
@@ -696,7 +696,7 @@ describe("POST /powerPlant/select", function() {
     });
 
     request(app)
-      .post("/powerPlant/select")
+      .post("/powerplant/select")
       .send("powerPlantCost=13")
       .set("Cookie", ["gameId=53;playerId=1234567"])
       .expect(200, done);

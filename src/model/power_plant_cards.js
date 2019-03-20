@@ -26,10 +26,10 @@ class PowerPlantMarket {
   }
 
   addSelectedPowerPlant(powerPlantCost) {
-    this.currentMarket.forEach(powerPlant => {
-      this.cards[powerPlant].isSelected = false;
-      if (powerPlant == powerPlantCost) {
-        this.cards[powerPlant].isSelected = true;
+    this.currentMarket.forEach(powerplant => {
+      this.cards[powerplant].isSelected = false;
+      if (powerplant == powerPlantCost) {
+        this.cards[powerplant].isSelected = true;
       }
     });
   }

@@ -207,9 +207,9 @@ const getStorageCapacity = function(powerPlants) {
   storageCapacity["Garbage"] = 0;
   storageCapacity["Uranium"] = 0;
   storageCapacity["Hybrid"] = 0;
-  Object.keys(powerPlants).forEach(powerPlant => {
-    storageCapacity[powerPlants[powerPlant].resource.type] +=
-      powerPlants[powerPlant].resource.quantity * 2;
+  Object.keys(powerPlants).forEach(powerplant => {
+    storageCapacity[powerPlants[powerplant].resource.type] +=
+      powerPlants[powerplant].resource.quantity * 2;
   });
   return storageCapacity;
 };

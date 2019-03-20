@@ -40,7 +40,7 @@ app.set("views", __dirname + "/public/html");
 app.engine("html", view.renderFile);
 app.set("view engine", "html");
 
-// app.use(logger("dev"));
+app.use(logger("dev"));
 app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -60,7 +60,7 @@ app.post("/cities/build", buildCities);
 app.get("/passBuildingCities", passBuildingCities);
 app.get("/players", getPlayers);
 app.post("/auction/bid", makeBid);
-app.post("/powerPlant/select", selectPowerPlant);
+app.post("/powerplant/select", selectPowerPlant);
 app.get("/currentBid", getCurrentBid);
 app.get("/cities/light", lightCities);
 app.get("/player/powerplants", getPowerplants);
