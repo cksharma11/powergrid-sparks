@@ -95,13 +95,10 @@ const renderGamePage = function(req, res) {
 };
 
 const renderGameplay = function(req, res) {
-  try {
-    const gameId = getGameId(req);
-    const game = res.app.activeGames[+gameId];
-    res.render("gameplay.html", { players: game.getPlayers() });
-  } catch (error) {
-    res.send("");
-  }
+  const gameId = getGameId(req);
+  const game = res.app.activeGames[+gameId];
+  res.render("gameplay.html", { players: game.getPlayers() });
+  res.send("");
 };
 
 const addPlayer = function(game, joinerName, res, gameId) {
@@ -418,40 +415,37 @@ const getCurrentBid = function(req, res) {
 };
 
 const getGameDetails = function(req, res) {
-  try {
-    const game = initializeGame(req, res);
-    const players = game.getPlayers();
-    const turn = game.getTurn(players);
-    let player = turn.getCurrentPlayer();
-    const resourceMarket = game.getResourceMarket();
-    if (game.currentPhase() == "buyPowerPlant" && game.isAuctionStarted) {
-      if (game.isBidOver()) {
-        if (game.auction.players.length) {
-          player = game.auction.players[0];
-        }
-      } else {
-        player = game.auction.bid.currentBidder;
+  const game = initializeGame(req, res);
+  const players = game.getPlayers();
+  const turn = game.getTurn(players);
+  let player = turn.getCurrentPlayer();
+  const resourceMarket = game.getResourceMarket();
+  if (game.currentPhase() == "buyPowerPlant" && game.isAuctionStarted) {
+    if (game.isBidOver()) {
+      if (game.auction.players.length) {
+        player = game.auction.players[0];
       }
+    } else {
+      player = game.auction.bid.currentBidder;
     }
-    const resources = resourceMarket.getResources();
-    const powerPlants = game.getPowerPlantMarket();
-    const playerId = getPlayerId(req);
-    const playerStats = game.players.find(player => player.id == playerId);
-    res.send(
-      JSON.stringify({
-        player,
-        players,
-        resources,
-        powerPlants: JSON.stringify(powerPlants),
-        phase: game.currentPhase(),
-        playerStats,
-        logs: game.getLogs(),
-        winner: game.getWinner()
-      })
-    );
-  } catch (error) {
-    res.send("");
   }
+  const resources = resourceMarket.getResources();
+  const powerPlants = game.getPowerPlantMarket();
+  const playerId = getPlayerId(req);
+  const playerStats = game.players.find(player => player.id == playerId);
+  res.send(
+    JSON.stringify({
+      player,
+      players,
+      resources,
+      powerPlants: JSON.stringify(powerPlants),
+      phase: game.currentPhase(),
+      playerStats,
+      logs: game.getLogs(),
+      winner: game.getWinner()
+    })
+  );
+  res.send("");
 };
 
 const formatCityNames = function(cityNames) {
