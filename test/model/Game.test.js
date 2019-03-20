@@ -129,7 +129,7 @@ describe("Game", () => {
       const player1 = new Player("green", "leela");
       const player2 = new Player("blue", "ankon");
       const players = [player1, player2];
-      const powerPlantMarket = new PowerPlantMarket({
+      const powerplantMarket = new PowerPlantMarket({
         "13": {
           resource: { type: "Oil", quantity: 2 },
           city: 1,
@@ -143,7 +143,7 @@ describe("Game", () => {
           isSelected: false
         }
       });
-      game.powerPlantMarket = powerPlantMarket;
+      game.powerplantMarket = powerplantMarket;
       game.players = players;
       game.conductAuction("13","13");
       const actualOutput = game.getCurrentBid();
@@ -506,7 +506,7 @@ describe("Game", () => {
     });
 
     it("should return the playing order", function() {
-      const powerPlantMarket = {
+      const powerplantMarket = {
         cards: {
           "13": {
             resource: { type: "Oil", quantity: 2 },
@@ -529,7 +529,7 @@ describe("Game", () => {
       const player3 = new Player("yellow", "C");
       player3.id = 3;
       game.players = [player1, player2, player3];
-      game.powerPlantMarket = powerPlantMarket;
+      game.powerplantMarket = powerplantMarket;
       game.conductAuction("13","13");
       const actualOutput = game.getPlayersOrder();
       const expectedOutput = [2, 3, 1];
@@ -537,7 +537,7 @@ describe("Game", () => {
     });
 
     it("should return the playing order", function() {
-      const powerPlantMarket = new PowerPlantMarket({
+      const powerplantMarket = new PowerPlantMarket({
         "13": {
           resource: { type: "Oil", quantity: 2 },
           city: 1,
@@ -557,7 +557,7 @@ describe("Game", () => {
       player2.id = 2;
       const player3 = new Player("yellow", "C");
       player3.id = 3;
-      game.powerPlantMarket = powerPlantMarket;
+      game.powerplantMarket = powerplantMarket;
       game.players = [player1, player2, player3];
       game.conductAuction("13","13");
       game.conductAuction("pass","");
@@ -568,7 +568,7 @@ describe("Game", () => {
     });
 
     it("should return the playing order", function() {
-      const powerPlantMarket = new PowerPlantMarket({
+      const powerplantMarket = new PowerPlantMarket({
         "13": {
           resource: { type: "Oil", quantity: 2 },
           city: 1,
@@ -588,7 +588,7 @@ describe("Game", () => {
       player2.id = 2;
       const player3 = new Player("yellow", "C");
       player3.id = 3;
-      game.powerPlantMarket = powerPlantMarket;
+      game.powerplantMarket = powerplantMarket;
       game.players = [player1, player2, player3];
       game.conductAuction("13","13");
       game.conductAuction("pass","");
@@ -599,7 +599,7 @@ describe("Game", () => {
     });
 
     it("should return the playing order", function() {
-      const powerPlantMarket = new PowerPlantMarket({
+      const powerplantMarket = new PowerPlantMarket({
         "13": {
           resource: { type: "Oil", quantity: 2 },
           city: 1,
@@ -618,7 +618,7 @@ describe("Game", () => {
       player1.id = 1;
       const player2 = new Player("green", "B");
       player2.id = 2;
-      game.powerPlantMarket = powerPlantMarket;
+      game.powerplantMarket = powerplantMarket;
       game.players = [player1, player2];
       game.conductAuction("13","13");
       game.conductAuction("pass","");

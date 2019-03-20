@@ -30,7 +30,7 @@ class Game {
   conductAuction(bidAmount, selectedPowerPlant) {
     if (this.auction == undefined) {
       const auctionPlayers = this.players.slice();
-      this.auction = new Auction(auctionPlayers, this.powerPlantMarket);
+      this.auction = new Auction(auctionPlayers, this.powerplantMarket);
       this.auction.selectPowerPlant(selectedPowerPlant, bidAmount);
       this.currentPowerPlant = selectedPowerPlant;
       this.isAuctionStarted = true;
@@ -155,23 +155,23 @@ class Game {
   }
 
   initializePowerPlantMarket(market) {
-    this.powerPlantMarket = market;
+    this.powerplantMarket = market;
   }
 
   shuffleDeck(shuffler) {
-    this.powerPlantMarket.shuffleDeck(shuffler);
+    this.powerplantMarket.shuffleDeck(shuffler);
   }
 
   getPowerPlantMarket() {
-    return this.powerPlantMarket.getCurrentPowerPlants();
+    return this.powerplantMarket.getCurrentPowerPlants();
   }
 
   sellPowerPlant(price) {
-    this.powerPlantMarket.sellPowerPlant(price);
+    this.powerplantMarket.sellPowerPlant(price);
   }
 
   updatePowerPlants() {
-    this.powerPlantMarket.updateCurrentMarket();
+    this.powerplantMarket.updateCurrentMarket();
   }
 
   addLog(log) {
@@ -188,11 +188,11 @@ class Game {
   }
 
   addSelectedPowerPlant(powerplant) {
-    this.powerPlantMarket.addSelectedPowerPlant(powerplant);
+    this.powerplantMarket.addSelectedPowerPlant(powerplant);
   }
 
   rearrangePowerPlants() {
-    this.powerPlantMarket.rearrange();
+    this.powerplantMarket.rearrange();
   }
 
   changePhaseTo(phase) {

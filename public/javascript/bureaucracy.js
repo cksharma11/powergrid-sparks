@@ -129,15 +129,15 @@ const updatePowerplantInfo = function(powerplants) {
 
 const clickPowerplant = function(powerplantDiv) {
   const clickBorder = "2px solid black";
-  const powerPlantValue = powerplantDiv.childNodes[0].childNodes[0].innerText;
+  const powerplantValue = powerplantDiv.childNodes[0].childNodes[0].innerText;
   powerplantDiv.style.border = clickBorder;
-  selectedPowerPlant.push(powerPlantValue);
+  selectedPowerPlant.push(powerplantValue);
 };
 
 const unclickPowerplant = function(powerplantDiv) {
-  const powerPlantValue = powerplantDiv.childNodes[0].childNodes[0].innerText;
+  const powerplantValue = powerplantDiv.childNodes[0].childNodes[0].innerText;
   powerplantDiv.style.border = null;
-  const indexOfPowerPlant = selectedPowerPlant.indexOf(powerPlantValue);
+  const indexOfPowerPlant = selectedPowerPlant.indexOf(powerplantValue);
   selectedPowerPlant.splice(indexOfPowerPlant, 1);
 };
 

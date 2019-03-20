@@ -7,7 +7,7 @@ const Player = require("./model/player");
 const Bureaucracy = require("./model/bureaucracy");
 const Graph = require("node-dijkstra");
 
-const powerPlantCards = fs.readFileSync(
+const powerplantCards = fs.readFileSync(
   "./private/data/card_details.json",
   "UTF8"
 );
@@ -67,9 +67,9 @@ const setCookie = function(res, gameId, player) {
 const createGame = function(req, res) {
   const gameId = generateGameId(res.app.activeGames, Math.random);
   const game = new Game(req.body.playerCount);
-  const powerPlantMarket = new PowerPlantMarket(JSON.parse(powerPlantCards));
+  const powerplantMarket = new PowerPlantMarket(JSON.parse(powerplantCards));
   res.app.activeGames[gameId] = game;
-  res.app.activeGames[gameId].initializePowerPlantMarket(powerPlantMarket);
+  res.app.activeGames[gameId].initializePowerPlantMarket(powerplantMarket);
   const playerColor = game.getPlayerColor();
   const player = new Player(playerColor, req.body.hostName);
   setCookie(res, gameId, player);
@@ -200,16 +200,16 @@ const buyResources = function(req, res) {
   });
 };
 
-const getStorageCapacity = function(powerPlants) {
+const getStorageCapacity = function(powerplants) {
   const storageCapacity = {};
   storageCapacity["Coal"] = 0;
   storageCapacity["Oil"] = 0;
   storageCapacity["Garbage"] = 0;
   storageCapacity["Uranium"] = 0;
   storageCapacity["Hybrid"] = 0;
-  Object.keys(powerPlants).forEach(powerplant => {
-    storageCapacity[powerPlants[powerplant].resource.type] +=
-      powerPlants[powerplant].resource.quantity * 2;
+  Object.keys(powerplants).forEach(powerplant => {
+    storageCapacity[powerplants[powerplant].resource.type] +=
+      powerplants[powerplant].resource.quantity * 2;
   });
   return storageCapacity;
 };
@@ -364,8 +364,8 @@ const makeBid = function(req, res) {
 
 const selectPowerPlant = function(req, res) {
   const game = initializeGame(req, res);
-  const powerPlantCost = req.body.powerPlantCost;
-  game.addSelectedPowerPlant(powerPlantCost);
+  const powerplantCost = req.body.powerplantCost;
+  game.addSelectedPowerPlant(powerplantCost);
   res.send("");
 };
 
@@ -430,7 +430,7 @@ const getGameDetails = function(req, res) {
     }
   }
   const resources = resourceMarket.getResources();
-  const powerPlants = game.getPowerPlantMarket();
+  const powerplants = game.getPowerPlantMarket();
   const playerId = getPlayerId(req);
   const playerStats = game.players.find(player => player.id == playerId);
   res.send(
@@ -438,7 +438,7 @@ const getGameDetails = function(req, res) {
       player,
       players,
       resources,
-      powerPlants: JSON.stringify(powerPlants),
+      powerplants: JSON.stringify(powerplants),
       phase: game.currentPhase(),
       playerStats,
       logs: game.getLogs(),

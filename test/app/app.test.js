@@ -5,7 +5,7 @@ const Player = require("../../src/model/player");
 const PowerPlantMarket = require("../../src/model/power_plant_cards");
 const Turn = require("../../src/model/turn");
 
-const powerPlantsCards = {
+const powerplantsCards = {
   "3": {
     resource: {
       type: "Oil",
@@ -204,15 +204,15 @@ describe("GET /gameplay", () => {
   });
 });
 
-describe("GET /powerPlantMarket", () => {
-  it("should return the powerPlants with status code 200", done => {
+describe("GET /powerplantMarket", () => {
+  it("should return the powerplants with status code 200", done => {
     app.activeGames["11"] = new Game(2);
-    app.activeGames["11"].powerPlantMarket = new PowerPlantMarket(
-      powerPlantsCards
+    app.activeGames["11"].powerplantMarket = new PowerPlantMarket(
+      powerplantsCards
     );
     app.cookies["12345"] = "Ankon";
     request(app)
-      .get("/powerPlantMarket")
+      .get("/powerplantMarket")
       .set("Cookie", ["gameId=11;playerId=12345"])
       .expect("Content-Type", /html/)
       .expect(200, done);
@@ -596,7 +596,7 @@ describe("GET /currentBid", function() {
     app.cookies["1234567"] = "Ankon";
     const player1 = new Player("green", "naman");
     app.activeGames["52"].addPlayer(player1);
-    app.activeGames["52"].powerPlantMarket = {
+    app.activeGames["52"].powerplantMarket = {
       cards: {
         "13": {
           resource: { type: "Oil", quantity: 2 },
@@ -643,10 +643,10 @@ describe("POST /returnResources", function() {
     const cityCount = 2;
     const player = new Player("green", "gaurav");
     player.id = "7351";
-    const powerPlantMarket = new PowerPlantMarket(powerPlantsCards);
+    const powerplantMarket = new PowerPlantMarket(powerplantsCards);
     app.activeGames["420"] = new Game(2);
     app.activeGames["420"].addPlayer(player);
-    app.activeGames["420"].initializePowerPlantMarket(powerPlantMarket);
+    app.activeGames["420"].initializePowerPlantMarket(powerplantMarket);
     app.cookies["7351"] = "gaurav";
     request(app)
       .post("/returnResources")
@@ -680,7 +680,7 @@ describe("POST /powerplant/select", function() {
   it("should respond with 200", function(done) {
     app.activeGames["53"] = new Game(1);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["53"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["53"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -697,7 +697,7 @@ describe("POST /powerplant/select", function() {
 
     request(app)
       .post("/powerplant/select")
-      .send("powerPlantCost=13")
+      .send("powerplantCost=13")
       .set("Cookie", ["gameId=53;playerId=1234567"])
       .expect(200, done);
   });
@@ -709,7 +709,7 @@ describe("POST /auction/bid", function() {
     app.activeGames["53"] = new Game(1);
     app.activeGames["53"].addPlayer(player1);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["53"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["53"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -726,7 +726,7 @@ describe("POST /auction/bid", function() {
 
     request(app)
       .post("/auction/bid")
-      .send("bidAmount=13&selectedPowerPlant=powerPlant_13")
+      .send("bidAmount=13&selectedPowerPlant=powerplant_13")
       .set("Cookie", ["gameId=53;playerId=1234567"])
       .expect(200, done);
   });
@@ -738,7 +738,7 @@ describe("GET /getGameDetails", function() {
     const player1 = new Player("green", "gaurav");
     app.activeGames["55"].addPlayer(player1);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["55"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["55"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -764,7 +764,7 @@ describe("GET /getGameDetails", function() {
     const player1 = new Player("green", "gaurav");
     app.activeGames["55"].addPlayer(player1);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["55"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["55"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -790,7 +790,7 @@ describe("GET /getGameDetails", function() {
     const player1 = new Player("green", "gaurav");
     app.activeGames["55"].addPlayer(player1);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["55"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["55"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -818,7 +818,7 @@ describe("GET /getGameDetails", function() {
     const player1 = new Player("green", "gaurav");
     app.activeGames["55"].addPlayer(player1);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["55"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["55"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -844,7 +844,7 @@ describe("GET /getGameDetails", function() {
     const player1 = new Player("green", "gaurav");
     app.activeGames["155"].addPlayer(player1);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["155"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["155"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -873,7 +873,7 @@ describe("GET /getGameDetails", function() {
     app.activeGames["156"].addPlayer(player1);
     app.activeGames["156"].addPlayer(player2);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["156"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["156"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -905,7 +905,7 @@ describe("GET /getGameDetails", function() {
     app.activeGames["111"].addPlayer(player2);
     app.activeGames["111"].addPlayer(player3);
     app.cookies["1234567"] = "Ankon";
-    app.activeGames["111"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["111"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Hybrid", quantity: 2 },
         city: 1,
@@ -940,7 +940,7 @@ describe("POST /buildingCost", function() {
     const player = new Player("red", "Ankon");
     app.cookies["1234567"] = "Ankon";
     app.activeGames["171"].addPlayer(player);
-    app.activeGames["171"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["171"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,
@@ -968,7 +968,7 @@ describe("POST /buildingCost", function() {
     player.cityNames = ["new_york"];
     app.cookies["1234567"] = "Ankon";
     app.activeGames["172"].addPlayer(player);
-    app.activeGames["172"].powerPlantMarket = new PowerPlantMarket({
+    app.activeGames["172"].powerplantMarket = new PowerPlantMarket({
       "13": {
         resource: { type: "Oil", quantity: 2 },
         city: 1,

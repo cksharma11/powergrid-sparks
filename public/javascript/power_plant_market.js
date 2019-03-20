@@ -19,16 +19,16 @@ const increaseBid = function() {
 };
 
 const fetchMarket = function() {
-  fetch("/powerPlantMarket")
+  fetch("/powerplantMarket")
     .then(res => res.json())
-    .then(powerPlantCards => {
-      displayPowerPlantMarket(powerPlantCards);
+    .then(powerplantCards => {
+      displayPowerPlantMarket(powerplantCards);
     });
 };
 
-const displayPowerPlantMarket = function(powerPlantCards) {
+const displayPowerPlantMarket = function(powerplantCards) {
   const market = document.getElementById("market");
-  market.appendChild(generatePowerPlantMarket(powerPlantCards));
+  market.appendChild(generatePowerPlantMarket(powerplantCards));
 };
 
 const updatePriceDiv = function(price) {
@@ -36,65 +36,65 @@ const updatePriceDiv = function(price) {
 };
 
 const selectPowerPlant = function(element) {
-  const powerPlantCost = element.id.split("_")[1];
+  const powerplantCost = element.id.split("_")[1];
   fetch("/powerplant/select", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `powerPlantCost=${powerPlantCost}`
+    body: `powerplantCost=${powerplantCost}`
   });
   selectedPowerPlants.pop();
   selectedPowerPlants.push(element.id);
   resetBidAmount();
-  updatePriceDiv(powerPlantCost);
+  updatePriceDiv(powerplantCost);
 };
 
-const handleMarketState = function(state, powerPlantDiv, powerPlantCost) {
+const handleMarketState = function(state, powerplantDiv, powerplantCost) {
   if (state == "currentMarket") {
-    powerPlantDiv.onclick = selectPowerPlant.bind(null, powerPlantDiv);
-    powerPlantDiv.style.cursor = "pointer";
-    currentMarketCards[powerPlantCost] = {
+    powerplantDiv.onclick = selectPowerPlant.bind(null, powerplantDiv);
+    powerplantDiv.style.cursor = "pointer";
+    currentMarketCards[powerplantCost] = {
       isSelected: false,
-      powerplant: powerPlantDiv
+      powerplant: powerplantDiv
     };
   }
 };
 
-const generatePowerPlantInfo = function(powerPlantDetails) {
+const generatePowerPlantInfo = function(powerplantDetails) {
   const infoDiv = document.createElement("div");
   infoDiv.className = "card-details";
-  infoDiv.innerHTML = `${resources[powerPlantDetails.resource.type]} 
-                               ${powerPlantDetails.resource.quantity} 
+  infoDiv.innerHTML = `${resources[powerplantDetails.resource.type]} 
+                               ${powerplantDetails.resource.quantity} 
                                <i class='fas fa-arrow-right' ></i >  
                                <i class="fas fa-house-damage"></i>
-                               ${powerPlantDetails.city}`;
+                               ${powerplantDetails.city}`;
   return infoDiv;
 };
 
-const arrangeMarket = function(market, powerPlantCost, powerPlantDetails) {
-  const powerPlantId = `powerPlant_${powerPlantCost}`;
-  const powerPlantDiv = generateDiv("unselected-card", powerPlantId);
-  const priceDiv = generatePowerPlantPriceDiv(powerPlantCost);
-  const resourceDiv = generatePowerPlantInfo(powerPlantDetails);
-  appendChildren(powerPlantDiv, [priceDiv, resourceDiv]);
-  market.appendChild(powerPlantDiv);
-  handleMarketState(market.id, powerPlantDiv, powerPlantCost);
+const arrangeMarket = function(market, powerplantCost, powerplantDetails) {
+  const powerplantId = `powerplant_${powerplantCost}`;
+  const powerplantDiv = generateDiv("unselected-card", powerplantId);
+  const priceDiv = generatePowerPlantPriceDiv(powerplantCost);
+  const resourceDiv = generatePowerPlantInfo(powerplantDetails);
+  appendChildren(powerplantDiv, [priceDiv, resourceDiv]);
+  market.appendChild(powerplantDiv);
+  handleMarketState(market.id, powerplantDiv, powerplantCost);
 };
 
-const generateMarket = function(powerPlants, startingIndex, endingIndex, id) {
+const generateMarket = function(powerplants, startingIndex, endingIndex, id) {
   const marketDiv = generateDiv("single-market", id);
-  const market = Object.keys(powerPlants).slice(startingIndex, endingIndex);
+  const market = Object.keys(powerplants).slice(startingIndex, endingIndex);
   market.forEach(powerplant =>
-    arrangeMarket(marketDiv, powerplant, powerPlants[powerplant])
+    arrangeMarket(marketDiv, powerplant, powerplants[powerplant])
   );
   return marketDiv;
 };
 
-const persistCardClass = function(powerPlants, currentMarketDiv) {
-  const selectedPowerPlant = Object.keys(powerPlants).filter(
-    powerPlantCost => powerPlants[powerPlantCost].isSelected
+const persistCardClass = function(powerplants, currentMarketDiv) {
+  const selectedPowerPlant = Object.keys(powerplants).filter(
+    powerplantCost => powerplants[powerplantCost].isSelected
   );
   currentMarketDiv.childNodes.forEach(node => {
-    if (node.id == `powerPlant_${selectedPowerPlant[0]}`) {
+    if (node.id == `powerplant_${selectedPowerPlant[0]}`) {
       node.className = "selected-card";
       document.getElementById("make-bid").onclick = makeBid;
       document.getElementById("make-bid").className = "bid-option-enabled";
@@ -126,18 +126,18 @@ const persistCardClass = function(powerPlants, currentMarketDiv) {
         startBuyResourcePhase();
         return;
       }
-      const powerPlantCards = document.getElementById("currentMarket")
+      const powerplantCards = document.getElementById("currentMarket")
         .childNodes;
       if (!isBidOver && isAuctionStarted) {
-        powerPlantCards.forEach(
+        powerplantCards.forEach(
           powerplantCard => (powerplantCard.onclick = null)
         );
       } else {
-        powerPlantCards.forEach(
-          powerPlantCard =>
-            (powerPlantCard.onclick = selectPowerPlant.bind(
+        powerplantCards.forEach(
+          powerplantCard =>
+            (powerplantCard.onclick = selectPowerPlant.bind(
               null,
-              powerPlantCard
+              powerplantCard
             ))
         );
       }
@@ -154,16 +154,16 @@ const persistCardClass = function(powerPlants, currentMarketDiv) {
     });
 };
 
-const displayPowerPlants = function({ powerPlants, phase }) {
-  powerPlants = JSON.parse(powerPlants);
+const displayPowerPlants = function({ powerplants, phase }) {
+  powerplants = JSON.parse(powerplants);
   if (phase == "buyPowerPlant") {
-    const currentMarketDiv = generateMarket(powerPlants, 0, 4, "currentMarket");
-    const futureMarketDiv = generateMarket(powerPlants, 4, 8, "futureMarket");
-    const powerPlantDiv = generateDiv("power-plant-cards", "power-plant-cards");
-    appendChildren(powerPlantDiv, [currentMarketDiv, futureMarketDiv]);
-    persistCardClass(powerPlants, currentMarketDiv);
+    const currentMarketDiv = generateMarket(powerplants, 0, 4, "currentMarket");
+    const futureMarketDiv = generateMarket(powerplants, 4, 8, "futureMarket");
+    const powerplantDiv = generateDiv("power-plant-cards", "power-plant-cards");
+    appendChildren(powerplantDiv, [currentMarketDiv, futureMarketDiv]);
+    persistCardClass(powerplants, currentMarketDiv);
     const market = document.getElementById("market").children[0];
-    market.replaceChild(powerPlantDiv, market.childNodes[0]);
+    market.replaceChild(powerplantDiv, market.childNodes[0]);
   }
 };
 
@@ -181,25 +181,25 @@ const generateBidDiv = function() {
   document.getElementById("info").appendChild(biddingDiv);
 };
 
-const generatePowerPlantMarket = function(powerPlantCards) {
-  const powerPlants = powerPlantCards;
-  const powerPlantDiv = generateDiv("power-plant-cards", "power-plant-cards");
-  const currentMarketDiv = generateMarket(powerPlants, 0, 4);
-  const futureMarketDiv = generateMarket(powerPlants, 4, 8);
-  appendChildren(powerPlantDiv, [currentMarketDiv, futureMarketDiv]);
+const generatePowerPlantMarket = function(powerplantCards) {
+  const powerplants = powerplantCards;
+  const powerplantDiv = generateDiv("power-plant-cards", "power-plant-cards");
+  const currentMarketDiv = generateMarket(powerplants, 0, 4);
+  const futureMarketDiv = generateMarket(powerplants, 4, 8);
+  appendChildren(powerplantDiv, [currentMarketDiv, futureMarketDiv]);
   const resourceMarketDiv = generateResourceMarketDiv();
   generateBidDiv();
   const marketDiv = document.createElement("div");
   marketDiv.className = "market-div";
   marketDiv.id = "market-div";
-  appendChildren(marketDiv, [powerPlantDiv, resourceMarketDiv]);
+  appendChildren(marketDiv, [powerplantDiv, resourceMarketDiv]);
   return marketDiv;
 };
 
-const generatePowerPlantPriceDiv = function(powerPlantCost) {
+const generatePowerPlantPriceDiv = function(powerplantCost) {
   const priceDiv = generateDiv("price-details");
   const price = generateDiv("price");
-  price.innerHTML = powerPlantCost;
+  price.innerHTML = powerplantCost;
   priceDiv.appendChild(price);
   return priceDiv;
 };
@@ -208,10 +208,10 @@ const resetBidAmount = function() {
   document.getElementById("bid-amount").innerText = 0;
 };
 
-const addPowerPlantToPlayer = function(count, powerPlants, powerPlantCost) {
-  const powerPlantDiv = document.getElementById(`powerplant-${count}`);
-  powerPlantDiv.innerHTML = "";
-  arrangeMarket(powerPlantDiv, powerPlantCost, powerPlants[powerPlantCost]);
+const addPowerPlantToPlayer = function(count, powerplants, powerplantCost) {
+  const powerplantDiv = document.getElementById(`powerplant-${count}`);
+  powerplantDiv.innerHTML = "";
+  arrangeMarket(powerplantDiv, powerplantCost, powerplants[powerplantCost]);
 };
 
 const makeBid = function() {

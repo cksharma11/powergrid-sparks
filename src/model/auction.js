@@ -1,7 +1,7 @@
 class Bid {
-  constructor(players, powerPlantCost) {
+  constructor(players, powerplantCost) {
     this.players = players;
-    this.currentBidAmount = powerPlantCost;
+    this.currentBidAmount = powerplantCost;
     this.action = null;
   }
 
@@ -42,9 +42,9 @@ class Bid {
 }
 
 class Auction {
-  constructor(players, powerPlantMarket) {
+  constructor(players, powerplantMarket) {
     this.players = players;
-    this.powerPlantMarket = powerPlantMarket;
+    this.powerplantMarket = powerplantMarket;
     this.currentPlayer = players[0];
     this.isBidOver = false;
     this.Action = null;
@@ -55,7 +55,7 @@ class Auction {
     this.currentPlayer = this.players[0];
   }
 
-  selectPowerPlant(powerPlantCost, currentBidAmount) {
+  selectPowerPlant(powerplantCost, currentBidAmount) {
     this.biddingResult = undefined;
     this.isBidOver = false;
     if (currentBidAmount == "pass") {
@@ -68,9 +68,9 @@ class Auction {
       return this.isAuctionOver();
     }
     this.selectedPowerPlant = {
-      value: powerPlantCost,
-      resource: this.powerPlantMarket.cards[powerPlantCost].resource,
-      city: this.powerPlantMarket.cards[powerPlantCost].city
+      value: powerplantCost,
+      resource: this.powerplantMarket.cards[powerplantCost].resource,
+      city: this.powerplantMarket.cards[powerplantCost].city
     };
     this.action = `${this.currentPlayer.name} has selected the Power Plant `;
     this.currentBidAmount = currentBidAmount;

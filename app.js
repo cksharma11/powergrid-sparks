@@ -49,7 +49,7 @@ app.get("/", renderHome);
 app.post("/createGame", createGame);
 app.get("/createGame", renderGamePage);
 app.post("/joinGame", joinGame);
-app.get("/powerPlantMarket", initializeMarket);
+app.get("/powerplantMarket", initializeMarket);
 app.get("/gameplay", renderGameplay);
 app.get("/waitingPage", renderWaitingPage);
 app.get("/invalidGameId", renderErrorPage);

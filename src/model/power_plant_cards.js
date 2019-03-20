@@ -25,10 +25,10 @@ class PowerPlantMarket {
     this.currentMarket = this.currentMarket.sort((x, y) => x - y);
   }
 
-  addSelectedPowerPlant(powerPlantCost) {
+  addSelectedPowerPlant(powerplantCost) {
     this.currentMarket.forEach(powerplant => {
       this.cards[powerplant].isSelected = false;
-      if (powerplant == powerPlantCost) {
+      if (powerplant == powerplantCost) {
         this.cards[powerplant].isSelected = true;
       }
     });

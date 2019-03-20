@@ -3,7 +3,7 @@ const chai = require("chai");
 const sinon = require("sinon");
 
 describe("PowerPlantMarket", function() {
-  const powerPlantDetails = {
+  const powerplantDetails = {
     1: "one",
     2: "two",
     3: "three",
@@ -16,42 +16,42 @@ describe("PowerPlantMarket", function() {
     10: "ten"
   };
 
-  const powerPlants = new PowerPlantMarket(powerPlantDetails);
+  const powerplants = new PowerPlantMarket(powerplantDetails);
 
   describe("shuffleDeck", () => {
     it("should shuffle the deck", () => {
       const expectedOutput = ["10", "9"];
       const shuffler = sinon.stub();
       shuffler.onFirstCall().returns(["10", "9"]);
-      powerPlants.shuffleDeck(shuffler);
-      const actualOutput = powerPlants.deck;
+      powerplants.shuffleDeck(shuffler);
+      const actualOutput = powerplants.deck;
       chai.expect(actualOutput).to.be.deep.equal(expectedOutput);
     });
   });
 
   describe("sellPowerPlant", () => {
     it("should remove given powerplant from the current market", () => {
-      powerPlants.sellPowerPlant("3");
+      powerplants.sellPowerPlant("3");
       const expectedOutput = ["1", "2", "4", "5", "6", "7", "8"];
-      const actualOutput = powerPlants.currentMarket;
+      const actualOutput = powerplants.currentMarket;
       chai.expect(actualOutput).to.be.deep.equal(expectedOutput);
     });
   });
 
   describe("getCurrentMarket", () => {
     it("should remove given powerplant from the current market", () => {
-      powerPlants.updateCurrentMarket();
+      powerplants.updateCurrentMarket();
       const expectedOutput = ["1", "2", "4", "5", "6", "7", "8", "10"];
-      const actualOutput = powerPlants.currentMarket;
+      const actualOutput = powerplants.currentMarket;
       chai.expect(actualOutput).to.be.deep.equal(expectedOutput);
     });
   });
 
   describe("rearrange", function() {
     it("should rearrange current market", function() {
-      powerPlants.rearrange();
-      chai.expect(powerPlants.deck).to.be.an("Array");
-      chai.expect(powerPlants.currentMarket).to.be.of.length(8);
+      powerplants.rearrange();
+      chai.expect(powerplants.deck).to.be.an("Array");
+      chai.expect(powerplants.currentMarket).to.be.of.length(8);
     });
   });
 });
